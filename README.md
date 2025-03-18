@@ -1,11 +1,11 @@
 # Auth0 SSO with Spring Boot (with Docker and Kubernetes deployment)
-#   # Docker and Kubernetes deployment
+## Docker and Kubernetes deployment
 ### Docker
 #### Build with Gradle and Docker
 ![1_docker_build.png](src/main/resources/images/docker/1_docker_build.png)
 Image will shows up in Docker Desktop
 ![2_image_name_and_tag.png](src/main/resources/images/docker/2_image_name_and_tag.png)
-### #Run container on Docker Desktop
+####Run container on Docker Desktop
 Forward the exposed port (3000)
 ![3_image_run.png](src/main/resources/images/docker/3_image_run.png)
 ![4_container_run.png](src/main/resources/images/docker/4_container_run.png)
@@ -38,6 +38,12 @@ spec:
 Note: use `imagePullPolicy: Never` to declare that the image is pulled from local docker, not Docker Hub.
 ![6_forward_port.png](src/main/resources/images/docker/6_forward_port.png)
 ![7_getall_k8s.png](src/main/resources/images/docker/7_getall_k8s.png)
+#### Load Balancing
+Use `replicas: 3`
+![9_load_balancing.png](src/main/resources/images/docker/9_load_balancing.png)
+To forward port, use `kubectl port-forward deployment/my-app-deployment 3000:3000`, this allows forward port from any of the replicas.
+
+
 Result
 ![8_result.png](src/main/resources/images/docker/8_result.png)
 ## 1. Homepage
