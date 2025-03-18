@@ -38,7 +38,7 @@ spec:
 Note: use `imagePullPolicy: Never` to declare that the image is pulled from local docker, not Docker Hub.
 ![6_forward_port.png](src/main/resources/images/docker/6_forward_port.png)
 ![7_getall_k8s.png](src/main/resources/images/docker/7_getall_k8s.png)
-#### Load Balancing
+#### Load Balancing & Service Discovery
 Use `replicas: 3`
 ![9_load_balancing.png](src/main/resources/images/docker/9_load_balancing.png)
 To forward port, use `kubectl port-forward deployment/my-app-deployment 3000:3000`, this allows forward port from any of the replicas.
