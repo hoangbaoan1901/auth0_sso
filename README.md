@@ -5,6 +5,7 @@
 The project was build with `gradle`. So whenever the source code is commited to the `master` branch, we had need to proceed these steps:
 - First, run `./gradlew build`
 - Then, push create a docker container out of the JAR files we just made on the previous step and push to DockerHub.
+
 These step can be automized through Github Actions. The workflow is written in `./.github/workflows/gradle-docker.yml`.
 #### New pull request from `development` to `master`
 ![](src/main/resources/images/github_actions/pull_request.png)
