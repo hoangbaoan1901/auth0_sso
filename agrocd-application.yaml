@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/hoangbaoan1901/information-system_UET.git
+    repoURL: https://github.com/hoangbaoan1901/auth0_sso.git
     targetRevision: master
-    path: sem6/ent_app/auth0_sso/k8s/overlays/dev
+    path: k8s/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: default
