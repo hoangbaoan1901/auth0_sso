@@ -40,6 +40,10 @@ Additional configs are added add `k8s/overlays/dev`
 
 Results:
 ![](src/main/resources/images/argo_cd/argocd.png)
+
+
+To access the web, forward the port of the service using `kubectl port-forward svc/dev-auth0-sso-svc 3000:80`
+![](src/main/resources/images/argo_cd/results.png)
 ## Docker and Kubernetes deployment (17/03/2025)
 ### Docker
 #### Build with Gradle and Docker
