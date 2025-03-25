@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: my-k8s-app-container
-          image: spring/auth0_sso-docker:latest
+          image: springio/gs-spring-boot-docker:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
