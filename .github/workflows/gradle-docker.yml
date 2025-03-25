@@ -36,6 +36,20 @@ jobs:
       with:
         context: .
         push: ${{ github.event_name != 'pull_request' }}
-        tags: hoangbaoan1901/auth0_sso:latest
+        tags: hoangbaoan1901/auth0_sso:latest,hoangbaoan1901/auth0_sso:${{ github.sha }}
         build-args: |
           JAR_FILE=build/libs/*.jar
+          
+    # Update Kubernetes manifests
+    - name: Update Kubernetes resources
+      run: |
+        sed -i "s|image: hoangbaoan1901/auth0_sso:latest|image: hoangbaoan1901/auth0_sso:${{ github.sha }}|" k8s/base/deployment.yaml
+    
+    # Commit and push the updated manifests
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add k8s/base/deployment.yaml
+        git commit -m "Update image to ${{ github.sha }}" || echo "No changes to commit"
+        git push
