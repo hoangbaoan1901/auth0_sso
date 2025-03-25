@@ -36,13 +36,15 @@ To activate ArgoCD, we need to declare these variables to `argocd-application.ya
     targetRevision: master
     path: k8s/overlays/dev
 ```
-Additional configs are added add `k8s/overlays/dev`
+Additional configs are added at `/k8s`
 
-Results:
+### Results:
 ![](src/main/resources/images/argo_cd/argocd.png)
-
-
-To access the web, forward the port of the service using `kubectl port-forward svc/dev-auth0-sso-svc 3000:80`
+To access the web, forward the port of the service using 
+```shell
+kubectl port-forward svc/dev-auth0-sso-svc 3000:80
+```
+Now we can access the web via `localhost:3000`
 ![](src/main/resources/images/argo_cd/results.png)
 ## Docker and Kubernetes deployment (17/03/2025)
 ### Docker
