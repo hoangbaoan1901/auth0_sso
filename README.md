@@ -13,7 +13,33 @@ These step can be automized through Github Actions. The workflow is written in `
 ##### New image update on DockerHub
 ![](src/main/resources/images/github_actions/image_on_dockerhub.png)
 ### CD with Argo
+First, we have to update the K8s manifest with Github Action by adding this to the workflow 
+```yaml
+    # Update Kubernetes manifests
+    - name: Update Kubernetes resources
+      run: |
+        sed -i "s|image: hoangbaoan1901/auth0_sso:latest|image: hoangbaoan1901/auth0_sso:${{ github.sha }}|" k8s/base/deployment.yaml
+    
+    # Commit and push the updated manifests
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add k8s/base/deployment.yaml
+        git commit -m "Update image to ${{ github.sha }}" || echo "No changes to commit"
+        git push
+```
+To activate ArgoCD, we need to declare these variables to `argocd-application.yaml` to sync the git repo with local ArgoCD app
+```yaml
+  source:
+    repoURL: https://github.com/hoangbaoan1901/auth0_sso.git
+    targetRevision: master
+    path: k8s/overlays/dev
+```
+Additional configs are added add `k8s/overlays/dev`
 
+Results:
+![](src/main/resources/images/argo_cd/argocd.png)
 ## Docker and Kubernetes deployment (17/03/2025)
 ### Docker
 #### Build with Gradle and Docker
