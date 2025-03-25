@@ -1,17 +1,18 @@
 # Auth0 SSO with Spring Boot (with Docker and Kubernetes deployment, and CI/CD)
 
 ## CI/CD with Github Actions and ArgoCD (25/03/2025)
+### CI with Github Actions
 The project was build with `gradle`. So whenever the source code is commited to the `master` branch, we had need to proceed these steps:
 - First, run `./gradlew build`
 - Then, push create a docker container out of the JAR files we just made on the previous step and push to DockerHub.
 These step can be automized through Github Actions. The workflow is written in `./.github/workflows/gradle-docker.yml`.
-
-### New pull request from `development` to `master`
+#### New pull request from `development` to `master`
 ![](src/main/resources/images/github_actions/pull_request.png)
-#### Workflow completed
+##### Workflow completed
 ![](src/main/resources/images/github_actions/build_gradle_and_push_docker_image.png)
-#### New image update on DockerHub
+##### New image update on DockerHub
 ![](src/main/resources/images/github_actions/image_on_dockerhub.png)
+### CD with Argo
 
 ## Docker and Kubernetes deployment (17/03/2025)
 ### Docker

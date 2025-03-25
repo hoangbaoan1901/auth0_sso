@@ -1,20 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment
+  name: auth0-sso-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-app
+      app: auth0-sso
   template:
     metadata:
       labels:
-        app: my-app
+        app: auth0-sso
     spec:
       containers:
-        - name: my-k8s-app-container
-          image: springio/gs-spring-boot-docker:latest
-          imagePullPolicy: Never
+        - name: auth0-sso
+          image: hoangbaoan1901/auth0_sso:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
