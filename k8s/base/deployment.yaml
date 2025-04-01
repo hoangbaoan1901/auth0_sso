@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth0-sso
-          image: hoangbaoan1901/auth0_sso:latest
+          image: hoangbaoan1901/auth0_sso:1b740c60eeffd642de570594478182f766eb6692
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
