@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: auth0-sso-monitor
+  labels:
+    release: prometheus  # Important: match your Prometheus Operator release label
+spec:
+  selector:
+    matchLabels:
+      app: auth0-sso  # Must match your service's selector
+  endpoints:
+  - port: http  # The port name in your Service
+    path: /actuator/prometheus
+    interval: 15s
